@@ -7,12 +7,11 @@ class SalesController < ApplicationController
     @sale = Sale.new(sale_params)
     @sale.total = @sale.value * (100 - @sale.discount.to_f)/100
 
-    if @sale.tax == nil 
+    if @sale.tax == 1
       @sale.tax = 19
       @sale.total = @sale.total * ((100 - @sale.tax.to_f)/100)
     else
       @sale.tax = 0
-
     end
 
     @sale.save
